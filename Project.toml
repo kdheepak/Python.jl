@@ -1,0 +1,4 @@
+name = "Python"
+uuid = "afd23a80-9089-46a9-93cf-f79a9048142d"
+authors = ["Dheepak Krishnamurthy <me@kdheepak.com>"]
+version = "0.1.0"
