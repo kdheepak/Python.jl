@@ -1084,6 +1084,257 @@ Py_VaBuildValue()                                     = error("Not implemented."
 Py_meta_grammar()                                     = error("Not implemented.")
 Py_pgen()                                             = error("Not implemented.")
 
+function PyAST_mod2obj()
+    ccall((:PyAST_mod2obj, var"python3.7m"), Ptr{Cint}, ())
+end
+
+function PyAST_obj2mod(ast, arena, mode)
+    ccall((:PyAST_obj2mod, var"python3.7m"), mod_ty, (Ptr{Cint}, Ptr{Cint}, Cint), ast, arena, mode)
+end
+
+function PyAST_Check(obj)
+    ccall((:PyAST_Check, var"python3.7m"), Cint, (Ptr{Cint},), obj)
+end
+
+function newbitset(nbits)
+    ccall((:newbitset, var"python3.7m"), bitset, (Cint,), nbits)
+end
+
+function delbitset(bs)
+    ccall((:delbitset, var"python3.7m"), Cvoid, (bitset,), bs)
+end
+
+function addbit(bs, ibit)
+    ccall((:addbit, var"python3.7m"), Cint, (bitset, Cint), bs, ibit)
+end
+
+function samebitset(bs1, bs2, nbits)
+    ccall((:samebitset, var"python3.7m"), Cint, (bitset, bitset, Cint), bs1, bs2, nbits)
+end
+
+function mergebitset(bs1, bs2, nbits)
+    ccall((:mergebitset, var"python3.7m"), Cvoid, (bitset, bitset, Cint), bs1, bs2, nbits)
+end
+
+function PyAsyncGen_ClearFreeLists()
+    ccall((:PyAsyncGen_ClearFreeLists, var"python3.7m"), Cint, ())
+end
+
+function newgrammar(start)
+    ccall((:newgrammar, var"python3.7m"), Ptr{grammar}, (Cint,), start)
+end
+
+function freegrammar(g)
+    ccall((:freegrammar, var"python3.7m"), Cvoid, (Ptr{grammar},), g)
+end
+
+function adddfa(g, type, name)
+    ccall((:adddfa, var"python3.7m"), Ptr{dfa}, (Ptr{grammar}, Cint, Cstring), g, type, name)
+end
+
+function addstate(d)
+    ccall((:addstate, var"python3.7m"), Cint, (Ptr{dfa},), d)
+end
+
+function addarc(d, from, to, lbl)
+    ccall((:addarc, var"python3.7m"), Cvoid, (Ptr{dfa}, Cint, Cint, Cint), d, from, to, lbl)
+end
+
+function PyGrammar_FindDFA(g, type)
+    ccall((:PyGrammar_FindDFA, var"python3.7m"), Ptr{dfa}, (Ptr{grammar}, Cint), g, type)
+end
+
+function addlabel(ll, type, str)
+    ccall((:addlabel, var"python3.7m"), Cint, (Ptr{labellist}, Cint, Cstring), ll, type, str)
+end
+
+function findlabel(ll, type, str)
+    ccall((:findlabel, var"python3.7m"), Cint, (Ptr{labellist}, Cint, Cstring), ll, type, str)
+end
+
+function PyGrammar_LabelRepr(lb)
+    ccall((:PyGrammar_LabelRepr, var"python3.7m"), Cstring, (Ptr{label},), lb)
+end
+
+function translatelabels(g)
+    ccall((:translatelabels, var"python3.7m"), Cvoid, (Ptr{grammar},), g)
+end
+
+function addfirstsets(g)
+    ccall((:addfirstsets, var"python3.7m"), Cvoid, (Ptr{grammar},), g)
+end
+
+function PyGrammar_AddAccelerators(g)
+    ccall((:PyGrammar_AddAccelerators, var"python3.7m"), Cvoid, (Ptr{grammar},), g)
+end
+
+function PyGrammar_RemoveAccelerators(arg1)
+    ccall((:PyGrammar_RemoveAccelerators, var"python3.7m"), Cvoid, (Ptr{grammar},), arg1)
+end
+
+function printgrammar(g, fp)
+    ccall((:printgrammar, var"python3.7m"), Cvoid, (Ptr{grammar}, Ptr{Cint}), g, fp)
+end
+
+function printnonterminals(g, fp)
+    ccall((:printnonterminals, var"python3.7m"), Cvoid, (Ptr{grammar}, Ptr{Cint}), g, fp)
+end
+
+function PyInit__imp()
+    ccall((:PyInit__imp, var"python3.7m"), Cint, ())
+end
+
+function _PyArg_Fini()
+    ccall((:_PyArg_Fini, var"python3.7m"), Cvoid, ())
+end
+
+function PyObject_Malloc(size)
+    ccall((:PyObject_Malloc, var"python3.7m"), Ptr{Cvoid}, (Csize_t,), size)
+end
+
+function PyObject_Calloc(nelem, elsize)
+    ccall((:PyObject_Calloc, var"python3.7m"), Ptr{Cvoid}, (Csize_t, Csize_t), nelem, elsize)
+end
+
+function PyObject_Realloc(ptr, new_size)
+    ccall((:PyObject_Realloc, var"python3.7m"), Ptr{Cvoid}, (Ptr{Cvoid}, Csize_t), ptr, new_size)
+end
+
+function PyObject_Free(ptr)
+    ccall((:PyObject_Free, var"python3.7m"), Cvoid, (Ptr{Cvoid},), ptr)
+end
+
+function PyObject_Init()
+    ccall((:PyObject_Init, var"python3.7m"), Ptr{Cint}, ())
+end
+
+function PyObject_InitVar()
+    ccall((:PyObject_InitVar, var"python3.7m"), Ptr{Cint}, ())
+end
+
+function PyObject_GetArenaAllocator(allocator)
+    ccall((:PyObject_GetArenaAllocator, var"python3.7m"), Cvoid, (Ptr{PyObjectArenaAllocator},), allocator)
+end
+
+function PyObject_SetArenaAllocator(allocator)
+    ccall((:PyObject_SetArenaAllocator, var"python3.7m"), Cvoid, (Ptr{PyObjectArenaAllocator},), allocator)
+end
+
+function PyGC_Collect()
+    ccall((:PyGC_Collect, var"python3.7m"), Py_ssize_t, ())
+end
+
+function PyObject_GC_Track(arg1)
+    ccall((:PyObject_GC_Track, var"python3.7m"), Cvoid, (Ptr{Cvoid},), arg1)
+end
+
+function PyObject_GC_UnTrack(arg1)
+    ccall((:PyObject_GC_UnTrack, var"python3.7m"), Cvoid, (Ptr{Cvoid},), arg1)
+end
+
+function PyObject_GC_Del(arg1)
+    ccall((:PyObject_GC_Del, var"python3.7m"), Cvoid, (Ptr{Cvoid},), arg1)
+end
+
+function meta_grammar()
+    ccall((:meta_grammar, var"python3.7m"), Ptr{Cint}, ())
+end
+
+function pgen()
+    ccall((:pgen, var"python3.7m"), Ptr{Cint}, ())
+end
+
+function PyDTrace_LINE(arg0, arg1, arg2)
+    ccall((:PyDTrace_LINE, var"python3.7m"), Cvoid, (Cstring, Cstring, Cint), arg0, arg1, arg2)
+end
+
+function PyDTrace_FUNCTION_ENTRY(arg0, arg1, arg2)
+    ccall((:PyDTrace_FUNCTION_ENTRY, var"python3.7m"), Cvoid, (Cstring, Cstring, Cint), arg0, arg1, arg2)
+end
+
+function PyDTrace_FUNCTION_RETURN(arg0, arg1, arg2)
+    ccall((:PyDTrace_FUNCTION_RETURN, var"python3.7m"), Cvoid, (Cstring, Cstring, Cint), arg0, arg1, arg2)
+end
+
+function PyDTrace_GC_START(arg0)
+    ccall((:PyDTrace_GC_START, var"python3.7m"), Cvoid, (Cint,), arg0)
+end
+
+function PyDTrace_GC_DONE(arg0)
+    ccall((:PyDTrace_GC_DONE, var"python3.7m"), Cvoid, (Cint,), arg0)
+end
+
+function PyDTrace_INSTANCE_NEW_START(arg0)
+    ccall((:PyDTrace_INSTANCE_NEW_START, var"python3.7m"), Cvoid, (Cint,), arg0)
+end
+
+function PyDTrace_INSTANCE_NEW_DONE(arg0)
+    ccall((:PyDTrace_INSTANCE_NEW_DONE, var"python3.7m"), Cvoid, (Cint,), arg0)
+end
+
+function PyDTrace_INSTANCE_DELETE_START(arg0)
+    ccall((:PyDTrace_INSTANCE_DELETE_START, var"python3.7m"), Cvoid, (Cint,), arg0)
+end
+
+function PyDTrace_INSTANCE_DELETE_DONE(arg0)
+    ccall((:PyDTrace_INSTANCE_DELETE_DONE, var"python3.7m"), Cvoid, (Cint,), arg0)
+end
+
+function PyDTrace_IMPORT_FIND_LOAD_START(arg0)
+    ccall((:PyDTrace_IMPORT_FIND_LOAD_START, var"python3.7m"), Cvoid, (Cstring,), arg0)
+end
+
+function PyDTrace_IMPORT_FIND_LOAD_DONE(arg0, arg1)
+    ccall((:PyDTrace_IMPORT_FIND_LOAD_DONE, var"python3.7m"), Cvoid, (Cstring, Cint), arg0, arg1)
+end
+
+function PyDTrace_LINE_ENABLED()
+    ccall((:PyDTrace_LINE_ENABLED, var"python3.7m"), Cint, ())
+end
+
+function PyDTrace_FUNCTION_ENTRY_ENABLED()
+    ccall((:PyDTrace_FUNCTION_ENTRY_ENABLED, var"python3.7m"), Cint, ())
+end
+
+function PyDTrace_FUNCTION_RETURN_ENABLED()
+    ccall((:PyDTrace_FUNCTION_RETURN_ENABLED, var"python3.7m"), Cint, ())
+end
+
+function PyDTrace_GC_START_ENABLED()
+    ccall((:PyDTrace_GC_START_ENABLED, var"python3.7m"), Cint, ())
+end
+
+function PyDTrace_GC_DONE_ENABLED()
+    ccall((:PyDTrace_GC_DONE_ENABLED, var"python3.7m"), Cint, ())
+end
+
+function PyDTrace_INSTANCE_NEW_START_ENABLED()
+    ccall((:PyDTrace_INSTANCE_NEW_START_ENABLED, var"python3.7m"), Cint, ())
+end
+
+function PyDTrace_INSTANCE_NEW_DONE_ENABLED()
+    ccall((:PyDTrace_INSTANCE_NEW_DONE_ENABLED, var"python3.7m"), Cint, ())
+end
+
+function PyDTrace_INSTANCE_DELETE_START_ENABLED()
+    ccall((:PyDTrace_INSTANCE_DELETE_START_ENABLED, var"python3.7m"), Cint, ())
+end
+
+function PyDTrace_INSTANCE_DELETE_DONE_ENABLED()
+    ccall((:PyDTrace_INSTANCE_DELETE_DONE_ENABLED, var"python3.7m"), Cint, ())
+end
+
+function PyDTrace_IMPORT_FIND_LOAD_START_ENABLED()
+    ccall((:PyDTrace_IMPORT_FIND_LOAD_START_ENABLED, var"python3.7m"), Cint, ())
+end
+
+function PyDTrace_IMPORT_FIND_LOAD_DONE_ENABLED()
+    ccall((:PyDTrace_IMPORT_FIND_LOAD_DONE_ENABLED, var"python3.7m"), Cint, ())
+end
+
+function PySignal_SetWakeupFd(fd)
+    ccall((:PySignal_SetWakeupFd, var"python3.7m"), Cint, (Cint,), fd)
+end
 
 
 end # module
